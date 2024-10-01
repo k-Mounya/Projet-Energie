@@ -2,7 +2,7 @@ pandas
 numpy
 streamlit
 seaborn 
-matplotlib.pyplot 
+matplotlib 
 plotly.graph_objects 
 plotly.express 
 datetime
