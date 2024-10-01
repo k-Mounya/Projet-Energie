@@ -315,7 +315,7 @@ elif page == pages[3]:
     result_models = pd.read_csv('result_models.csv', sep=';', header=0)
     st.write(result_models)
 
-    st.image(Images/post-gridsearch.png")
+    st.image("Images/post-gridsearch.png")
 
     # Charger les résultats sauvegardés
     results_path = Modèles et résultats JOBLIB/LRresults.pkl'
@@ -323,37 +323,37 @@ elif page == pages[3]:
     
     #Afficher les features importances
     st.title("Feature importance Random Forest")
-    st.imageImages/feature importance RandomForest.png")
+    st.image("Images/feature importance RandomForest.png")
   
     st.title("Feature importance Decision Tree")
-    st.image(Images/feature importance DecisionTree.png")
+    st.image("Images/feature importance DecisionTree.png")
 
     st.title("Feature importance XGB")
-    st.image(Images/feature importance XGB.png")
+    st.image("Images/feature importance XGB.png")
 
     # Afficher les images et les explications
     st.title("Shape de Random Forest Regressor")
-    st.image(Images/Shape Random Forest Regressor.png")
+    st.image("Images/Shape Random Forest Regressor.png")
     st.write("On remarque que les variables ayant le plus d'impact dans le modèle Random Forest Regressor sont : population, bioen, therm, Température (C°)")
     
     st.title("Shape de Decision Tree Regressor")
-    st.image(Images/Shape Decision Tree Regressor.png")
+    st.image("Images/Shape Decision Tree Regressor.png")
     st.write("On remarque que les variables ayant le plus d'impact dans le modèle Decision Tree Regressor sont : population, therm, ech_phy")
 
     st.title("Shape de XGB Regressor")
-    st.image(Images/Shape XGB Regressor.png")
+    st.image("Images/Shape XGB Regressor.png")
     st.write("On remarque que les variables ayant le plus d'impact dans le modèle XGB Regressor sont : population, bioen, therm, Température (C°)")
     
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\predic vs reel IDF.png")
+    st.image("Images/predic vs reel IDF.png")
     st.write("Île-de-France (IDF) - région avec une forte densité de population et une demande énergétique importante.")
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\predic vs reel PAC.png")
+    st.image("Images/predic vs reel PAC.png")
     st.write("Provence-Alpes-Côte d'Azur (PACA) - région plus ensoleillée et avec des variations de consommation différentes.")
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\predic vs reel NAQ.png")
+    st.image("Images/predic vs reel NAQ.png")
     st.write("Nouvelle-Aquitaine (NAQ) - une région avec une répartition plus rurale et des besoins énergétiques différents.")
 
     st.write("On remarque que les modèles suivent bien les tendances du réel. Tous sous-estiment les valeurs en semaine et surestiment les valeurs du week-end")
 
-    model_path = Modèles et résultats JOBLIB/Random_Forest_Regressor_model.pkl"
+    model_path = "Modèles et résultats JOBLIB/Random_Forest_Regressor_model.pkl"
     model = joblib.load(model_path)
     st.session_state.new_data = pd.DataFrame()
     # Conversion de la colonne 'date_heure' en datetime sans format spécifié
