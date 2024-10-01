@@ -13,7 +13,7 @@ st.sidebar.title("Sommaire")
 pages = ["Introduction et problématique", "Exploration des données", "Analyse des données", "Modélisation et prédictions"]
 page = st.sidebar.radio("Aller vers la page", pages)
 pd.set_option('display.max_columns', None)
-dfsmp = pd.read_csv(dfsmp.csv', sep=',', header=0)
+dfsmp = pd.read_csv('dfsmp.csv', sep=',', header=0)
 
 if page == pages[0]:
     st.write("### Contexte du projet")
