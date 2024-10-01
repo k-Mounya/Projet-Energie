@@ -26,12 +26,11 @@ if page == pages[0]:
     st.write("- L’analyse par filière de production : énergie nucléaire / renouvelable")
     st.write("- Un focus sur les énergies renouvelables et leurs lieux d’implantation.")
     st.write("- Pour y parvenir, nous allons utiliser un ensemble de données d’approximativement 2 millions d’enregistrements. Les données contiennent les informations sur la consommation d’électricité et sa production à partir de plusieurs de plusieurs sources d’énergie : nucléaire, solaire, éolienne, bioénergie, fioul, …  par région métropolitaine (hors corse) enregistrées par demi-heure.")
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\Image énergies.jpg")
-
+    st.image('Images/Image énergies.jpg')
 elif page == pages[1]:
     st.write("Notre DataFrame sur les consommations d'énergie par région et par tranche de 3 h")
     pd.set_option('display.max_columns', None)
-    dfsmp = pd.read_csv(r'C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\dfsmp.csv', sep=',', header=0)
+    dfsmp = pd.read_csv(dfsmp.csv', sep=',', header=0)
     dfsmp.columns = [col.replace(" ", "\n") for col in dfsmp.columns]
     st.dataframe(dfsmp.head(10), height=300)
 
