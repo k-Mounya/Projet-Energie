@@ -30,7 +30,7 @@ if page == pages[0]:
 elif page == pages[1]:
     st.write("Notre DataFrame sur les consommations d'énergie par région et par tranche de 3 h")
     pd.set_option('display.max_columns', None)
-    dfsmp = pd.read_csv(dfsmp.csv', sep=',', header=0)
+    dfsmp = pd.read_csv('dfsmp.csv', sep=',', header=0)
     dfsmp.columns = [col.replace(" ", "\n") for col in dfsmp.columns]
     st.dataframe(dfsmp.head(10), height=300)
 
@@ -312,36 +312,36 @@ elif page == pages[3]:
     
     # Afficher les résultats des modèles
     pd.set_option('display.max_columns', None)
-    result_models = pd.read_csv(r'C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\result_models.csv', sep=';', header=0)
+    result_models = pd.read_csv('result_models.csv', sep=';', header=0)
     st.write(result_models)
 
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\post-gridsearch.png")
+    st.image(Images/post-gridsearch.png")
 
     # Charger les résultats sauvegardés
-    results_path = r'C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Modèles et résultats JOBLIB\LRresults.pkl'
+    results_path = Modèles et résultats JOBLIB/LRresults.pkl'
     results = joblib.load(results_path)
     
     #Afficher les features importances
     st.title("Feature importance Random Forest")
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\feature importance RandomForest.png")
+    st.imageImages/feature importance RandomForest.png")
   
     st.title("Feature importance Decision Tree")
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\feature importance DecisionTree.png")
+    st.image(Images/feature importance DecisionTree.png")
 
     st.title("Feature importance XGB")
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\feature importance XGB.png")
+    st.image(Images/feature importance XGB.png")
 
     # Afficher les images et les explications
     st.title("Shape de Random Forest Regressor")
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\Shape Random Forest Regressor.png")
+    st.image(Images/Shape Random Forest Regressor.png")
     st.write("On remarque que les variables ayant le plus d'impact dans le modèle Random Forest Regressor sont : population, bioen, therm, Température (C°)")
     
     st.title("Shape de Decision Tree Regressor")
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\Shape Decision Tree Regressor.png")
+    st.image(Images/Shape Decision Tree Regressor.png")
     st.write("On remarque que les variables ayant le plus d'impact dans le modèle Decision Tree Regressor sont : population, therm, ech_phy")
 
     st.title("Shape de XGB Regressor")
-    st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\Shape XGB Regressor.png")
+    st.image(Images/Shape XGB Regressor.png")
     st.write("On remarque que les variables ayant le plus d'impact dans le modèle XGB Regressor sont : population, bioen, therm, Température (C°)")
     
     st.image(r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Images\predic vs reel IDF.png")
@@ -353,7 +353,7 @@ elif page == pages[3]:
 
     st.write("On remarque que les modèles suivent bien les tendances du réel. Tous sous-estiment les valeurs en semaine et surestiment les valeurs du week-end")
 
-    model_path = r"C:\Users\tonym\OneDrive\MOSCAT OneDrive\PROFESSIONNEL\DATASCIENTEST\Projet ENERGIE\Modèles et résultats JOBLIB\Random_Forest_Regressor_model.pkl"
+    model_path = Modèles et résultats JOBLIB/Random_Forest_Regressor_model.pkl"
     model = joblib.load(model_path)
     st.session_state.new_data = pd.DataFrame()
     # Conversion de la colonne 'date_heure' en datetime sans format spécifié
