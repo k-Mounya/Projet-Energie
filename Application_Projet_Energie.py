@@ -40,9 +40,8 @@ elif page == pages[1]:
 
         # Checkbox pour afficher les valeurs manquantes
     if st.checkbox('Afficher les années'):
-        #st.write(dfsmp['annee'].unique())
-         annees = dfsmp['annee'].str.replace(',', '').astype(int).unique()
-         st.write(annees)
+        st.write(dfsmp['annee'].unique())
+         
     
     # Checkbox pour afficher le shape du DataFrame
     if st.checkbox('Afficher les colonnes et types'):
