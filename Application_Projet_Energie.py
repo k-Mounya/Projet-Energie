@@ -42,7 +42,6 @@ elif page == pages[1]:
     if st.checkbox('Afficher les années'):
         #st.write(dfsmp['annee'].unique())
         annees = dfsmp['annee'].unique()
-        Convertir les années en une liste de chaînes pour éviter tout formatage automatique
         annees = [str(annee) for annee in annees]
         st.write(", ".join(annees))
          
