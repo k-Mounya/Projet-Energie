@@ -337,21 +337,32 @@ tab1, tab2, tab3 = st.tabs(["Résultats des modèles", "Features Importance", "P
 # Premier onglet : Résultats des modèles
 with tab1:
     st.write("### Résultats des modèles")
-    result_models = pd.read_csv('result_models.csv', sep=';', header=0)
-    st.write(result_models)
-    # Insérer l'analyse des résultats du premier tableau
-    st.write("""
-    **Analyse des résultats du premier tableau (entraînement)**
 
-    Lors de l’entraînement, nous avons sélectionné sept algorithmes couvrant une large variété de techniques, allant des régressions linéaires aux régressions non linéaires, et des modèles simples aux modèles plus complexes. Les algorithmes choisis incluent : **régression linéaire**, **régression Ridge**, **Lasso**, **ElasticNet**, **Decision Tree**, **Random Forest** et **XGBoost**.
+    # Diviser en deux colonnes pour afficher côte à côte
+    col1, col2 = st.columns(2)
 
-    Le tableau ci-dessous présente les métriques d'évaluation de chaque modèle. Nous observons que le **Random Forest** se distingue clairement comme le meilleur modèle pour ce jeu de données, avec un **R² proche de 0,9**. De plus, la différence entre le score d'entraînement et le score de test est la plus faible, ce qui indique que ce modèle parvient à généraliser efficacement sur les données de test sans sur-apprentissage (**overfitting**), contrairement à certains autres modèles.
+    # --- Partie 1 : Premier tableau dans la première colonne ---
+    with col1:
+        st.write("#### Performances des modèles (Entraînement)")
+        result_models = pd.read_csv('result_models.csv', sep=';', header=0)
+        st.write(result_models)
+        
+        st.write("""
+        **Évaluation des Modèles d'Entraînement : Performances et Comparaison**
 
-    Les méthodes de régression linéaire, quant à elles, n'ont pas bien performé, comme en témoigne leur **R² négatif** et des erreurs plus importantes. Cela montre que les modèles linéaires ne sont pas adaptés à la complexité du jeu de données.
+        Le tableau ci-dessus présente les métriques d'évaluation de chaque modèle. Nous observons que le **Random Forest** se distingue clairement comme le meilleur modèle...
+        """)
 
-    En conséquence, nous avons conservé les modèles non linéaires et avons appliqué une optimisation des hyperparamètres à l’aide de la méthode **Grid Search**. Cette approche permet de réduire le risque de sur-apprentissage et de garantir que les résultats soient robustes et optimisés.
-    """)
-    st.image("Images/post-gridsearch.png")
+    # --- Partie 2 : Deuxième tableau ou image dans la deuxième colonne ---
+    with col2:
+        st.write("#### Optimisation des Modèles (Grid Search)")
+        st.image("Images/post-gridsearch.png")
+        
+        st.write("""
+        **Analyse des Résultats après Optimisation (Grid Search)**
+
+        Après avoir appliqué la méthode **Grid Search**, nous avons affiné les hyperparamètres des modèles non linéaires...
+        """)
 
 # Deuxième onglet : Feature Importance
 with tab2:
