@@ -41,8 +41,8 @@ elif page == pages[1]:
         # Checkbox pour afficher les valeurs manquantes
     if st.checkbox('Afficher les années'):
         #st.write(dfsmp['annee'].unique())
-        dfsmp['annee'] = dfsmp['annee'].astype(str)
-        annees = dfsmp['annee'].str.replace(',', '').astype(int).unique()
+        dfsmp['annee'] = pd.to_numeric(dfsmp['annee'], errors='coerce')
+        annees = dfsmp['annee'].unique()
         st.write(annees)
          
     
