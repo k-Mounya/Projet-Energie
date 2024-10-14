@@ -329,6 +329,7 @@ elif page == pages[2]:
     st.write ("******************************************************************************************************************")
     #############################################################
 #partie que j'ai changé ell est dans le bloc note
+elif page == pages[3]:
 st.write("## Modélisation et Prédictions")
 
 # Créer des onglets pour diviser la page en plusieurs sections
