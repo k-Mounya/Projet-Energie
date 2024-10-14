@@ -69,11 +69,11 @@ elif page == pages[2]:
     dfsmp['annee_mois'] = pd.to_datetime(dfsmp['annee_mois'], format='%Y-%m').dt.to_period('M').astype(str)
 
     # Création du pivot table pour la heatmap avec la température
-    #heatmap_data[temperature_tronque] = heatmap_data['temperature (C°)'].round(2)
     heatmap_data = dfsmp.pivot_table(index='annee_mois', columns='region', values='temperature (C°)', aggfunc='mean')
     st.write("Données de la Heatmap :")
     st.write(heatmap_data)
 
+    
     # Création de la heatmap avec Plotly
     fig = px.imshow(heatmap_data, 
                     labels=dict(x="Région", y="Année-Mois", color="Température (°C)"),
