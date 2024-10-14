@@ -42,7 +42,7 @@ elif page == pages[1]:
     if st.checkbox('Afficher les années'):
         #st.write(dfsmp['annee'].unique())
         annees = dfsmp['annee'].unique()
-        annees = [str(annee) for annee in annees]
+        annees_str = [str(annee) for annee in annees]
         annees_df = pd.DataFrame(annees_str, columns=["Année"])
         st.write(annees_df)
          
