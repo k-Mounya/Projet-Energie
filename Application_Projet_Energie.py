@@ -330,7 +330,7 @@ elif page == pages[2]:
     #############################################################
 #partie que j'ai changé ell est dans le bloc note
 elif page == pages[3]:
-st.write("## Modélisation et Prédictions")
+    st.write("## Modélisation et Prédictions")
 
 # Créer des onglets pour diviser la page en plusieurs sections
 tab1, tab2, tab3 = st.tabs(["Résultats des modèles", "Features Importance", "Prédictions et Analyse"])
