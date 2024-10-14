@@ -69,10 +69,8 @@ elif page == pages[2]:
     dfsmp['annee_mois'] = pd.to_datetime(dfsmp['annee_mois'], format='%Y-%m').dt.to_period('M').astype(str)
 
     # Création du pivot table pour la heatmap avec la température
-    #heatmap_data = dfsmp.pivot_table(index='annee_mois', columns='region', values='temperature (C°)', aggfunc='mean')
-    #st.write("Données de la Heatmap :")
-    #st.write(heatmap_data)
-    #######
+    
+    #Moon j'ai arrondi la tempréture à 2 chiffre en partie décimale pour une meilleure lisibilité
     heatmap_data = dfsmp.pivot_table(index='annee_mois', columns='region', values='temperature (C°)', aggfunc='mean')
     heatmap_data = heatmap_data.round(2)
     st.write("Données de la Heatmap :")
@@ -86,10 +84,29 @@ elif page == pages[2]:
                     color_continuous_scale='Viridis')  # Utilisation d'une échelle de couleurs contrastée
     
     st.plotly_chart(fig)    
-    st.write ("On remarque que la moyenne de température en Provence-Alpes Côtes d'Azur est la plus forte de toutes les régions de France")
-    st.write ("Ce sont les régions Hauts de France, Normandie et Bretagne, plus proches du littoral, qui ont les températures les plus faibles en moyenne sur toute la période observée")
-    st.write ("Sans surprise, c'est bien pendant les mois d'hiver (Décembre, Janvier, Février) que l'on observe les températures les plus froides, en particulier pour le Grand-Est, plus éloigné du littoral")
-    st.write ("******************************************************************************************************************")
+    #st.write ("On remarque que la moyenne de température en Provence-Alpes Côtes d'Azur est la plus forte de toutes les régions de France")
+    #st.write ("Ce sont les régions Hauts de France, Normandie et Bretagne, plus proches du littoral, qui ont les températures les plus faibles en moyenne sur toute la période observée")
+    #st.write ("Sans surprise, c'est bien pendant les mois d'hiver (Décembre, Janvier, Février) que l'on observe les températures les plus froides, en particulier pour le Grand-Est, plus éloigné du littoral")
+    #st.write ("******************************************************************************************************************")
+st.write("## Analyse des températures régionales")
+st.write("""
+### Provence-Alpes-Côte d'Azur : La région la plus chaude
+La région **Provence-Alpes-Côte d'Azur** se distingue avec les températures moyennes les plus élevées en France. Cela s'explique par l'influence de son climat méditerranéen, caractérisé par des étés chauds et des hivers doux.
+""")
+st.write("""
+### Régions aux températures les plus basses
+À l'opposé, les régions **Hauts-de-France**, **Normandie**, et **Bretagne**, situées sur le littoral nord-ouest, présentent les températures moyennes les plus faibles. Ces régions sont influencées par l'océan Atlantique et la Manche, ce qui entraîne des températures plus fraîches tout au long de l'année.
+""")
+st.write("""
+### Mois d'hiver : Les températures les plus froides
+Sans surprise, les températures les plus basses sont observées durant les mois d'hiver (**Décembre, Janvier, Février**). Le **Grand-Est**, situé à l'intérieur des terres et loin du littoral, subit les plus fortes baisses de température en raison de son climat continental.
+""")
+
+
+
+
+
+    
     #############################################################################
     df = dfsmp.groupby('annee_mois').agg({
     'temperature (C°)': 'mean',
