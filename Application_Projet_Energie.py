@@ -28,6 +28,7 @@ if page == pages[0]:
     st.write("- Pour y parvenir, nous allons utiliser un ensemble de données d’approximativement 2 millions d’enregistrements. Les données contiennent les informations sur la consommation d’électricité et sa production à partir de plusieurs de plusieurs sources d’énergie : nucléaire, solaire, éolienne, bioénergie, fioul, …  par région métropolitaine (hors corse) enregistrées par demi-heure.")
     st.image('Images/Image énergies.jpg')
 elif page == pages[1]:
+    st.write("## Exploration des données")
     st.write("Notre DataFrame sur les consommations d'énergie par région et par tranche de 3 h")
     pd.set_option('display.max_columns', None)
     dfsmp = pd.read_csv('dfsmp.csv', sep=',', header=0)
