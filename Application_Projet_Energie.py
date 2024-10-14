@@ -16,7 +16,7 @@ pd.set_option('display.max_columns', None)
 dfsmp = pd.read_csv('dfsmp.csv', sep=',', header=0)
 
 if page == pages[0]:
-    st.write("### Contexte du projet")
+    st.write("## Contexte du projet")
     st.write("La croissance démographique, l’accès d’une part grandissante de la population mondiale à l’énergie, le développement rapide de certaines économies, synonyme d’industrialisation, les pays développés habitués à une énergie abondante et relativement bon marché, sont autant de facteurs contribuant à une hausse continue de la consommation d’énergie.")
     st.write("Le secteur économique de l'énergie en France comprend la production locale et l'importation d'énergie primaire, Pour couvrir les besoins énergétiques de la France, la branche énergétique française utilise de l'énergie primaire, produite en France ou importée, puis la transforme et la distribue aux utilisateurs.")
     st.write("Nous nous intéressons à la production locale, ainsi la France compte dans son bouquet énergétique des énergies fossiles et d’autres renouvelables tels que : le nucléaire, le pétrole, le gaz naturel, des d'énergies renouvelables et déchets.")
@@ -63,7 +63,7 @@ elif page == pages[1]:
         st.write(dfsmp.shape)
 
 elif page == pages[2]:
-    st.write("### Analyse des Données")
+    st.write("## Analyse des Données")
 
     # Prétraitement des données pour assurer le bon format des colonnes
     dfsmp['annee_mois'] = pd.to_datetime(dfsmp['annee_mois'], format='%Y-%m').dt.to_period('M').astype(str)
@@ -88,7 +88,7 @@ elif page == pages[2]:
     #st.write ("Ce sont les régions Hauts de France, Normandie et Bretagne, plus proches du littoral, qui ont les températures les plus faibles en moyenne sur toute la période observée")
     #st.write ("Sans surprise, c'est bien pendant les mois d'hiver (Décembre, Janvier, Février) que l'on observe les températures les plus froides, en particulier pour le Grand-Est, plus éloigné du littoral")
     #st.write ("******************************************************************************************************************")
-    st.write("## Analyse des températures régionales")
+    st.write("### Analyse des températures régionales")
     st.write("""
     ### Provence-Alpes-Côte d'Azur : La région la plus chaude
     La région **Provence-Alpes-Côte d'Azur** se distingue avec les températures moyennes les plus élevées en France. Cela s'explique par l'influence de son climat méditerranéen, caractérisé par des étés chauds et des hivers doux.
@@ -330,7 +330,7 @@ elif page == pages[2]:
 
 
 elif page == pages[3]:
-    st.write("### Modélisation et Prédictions")
+    st.write("## Modélisation et Prédictions")
     
     # Afficher les résultats des modèles
     pd.set_option('display.max_columns', None)
