@@ -43,7 +43,7 @@ elif page == pages[1]:
         #st.write(dfsmp['annee'].unique())
         annees = dfsmp['annee'].unique()
         annees = [str(annee) for annee in annees]
-        st.write(", ".join(annees))
+        st.write(dfsmp['annee'].unique())
          
     
     # Checkbox pour afficher le shape du DataFrame
