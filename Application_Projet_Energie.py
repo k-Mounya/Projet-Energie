@@ -339,6 +339,18 @@ with tab1:
     st.write("### Résultats des modèles")
     result_models = pd.read_csv('result_models.csv', sep=';', header=0)
     st.write(result_models)
+    # Insérer l'analyse des résultats du premier tableau
+    st.write("""
+    **Analyse des résultats du premier tableau (entraînement)**
+
+    Lors de l’entraînement, nous avons sélectionné sept algorithmes couvrant une large variété de techniques, allant des régressions linéaires aux régressions non linéaires, et des modèles simples aux modèles plus complexes. Les algorithmes choisis incluent : **régression linéaire**, **régression Ridge**, **Lasso**, **ElasticNet**, **Decision Tree**, **Random Forest** et **XGBoost**.
+
+    Le tableau ci-dessous présente les métriques d'évaluation de chaque modèle. Nous observons que le **Random Forest** se distingue clairement comme le meilleur modèle pour ce jeu de données, avec un **R² proche de 0,9**. De plus, la différence entre le score d'entraînement et le score de test est la plus faible, ce qui indique que ce modèle parvient à généraliser efficacement sur les données de test sans sur-apprentissage (**overfitting**), contrairement à certains autres modèles.
+
+    Les méthodes de régression linéaire, quant à elles, n'ont pas bien performé, comme en témoigne leur **R² négatif** et des erreurs plus importantes. Cela montre que les modèles linéaires ne sont pas adaptés à la complexité du jeu de données.
+
+    En conséquence, nous avons conservé les modèles non linéaires et avons appliqué une optimisation des hyperparamètres à l’aide de la méthode **Grid Search**. Cette approche permet de réduire le risque de sur-apprentissage et de garantir que les résultats soient robustes et optimisés.
+    """)
     st.image("Images/post-gridsearch.png")
 
 # Deuxième onglet : Feature Importance
