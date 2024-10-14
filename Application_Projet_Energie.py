@@ -328,129 +328,65 @@ elif page == pages[2]:
     st.write (" Les régiosn qui produisent le plus d'énergie : Auvergne Rhône Alpes, Centre Val de Loire, Grand Est, Hauts de France, Normandie et Nouvelle Aquitaine")
     st.write ("******************************************************************************************************************")
     #############################################################
+#partie que j'ai changé ell est dans le bloc note
+st.write("## Modélisation et Prédictions")
 
+# Créer des onglets pour diviser la page en plusieurs sections
+tab1, tab2, tab3 = st.tabs(["Résultats des modèles", "Features Importance", "Prédictions et Analyse"])
 
-elif page == pages[3]:
-    st.write("## Modélisation et Prédictions")
-    
-    # Afficher les résultats des modèles
-    pd.set_option('display.max_columns', None)
+# Premier onglet : Résultats des modèles
+with tab1:
+    st.write("### Résultats des modèles")
     result_models = pd.read_csv('result_models.csv', sep=';', header=0)
     st.write(result_models)
-
     st.image("Images/post-gridsearch.png")
 
-    # Charger les résultats sauvegardés
-    results_path = 'Modèles et résultats JOBLIB/LRresults.pkl'
-    results = joblib.load(results_path)
+# Deuxième onglet : Feature Importance
+with tab2:
+    st.write("### Feature Importance")
     
-    #Afficher les features importances
-    st.title("Feature importance Random Forest")
+    st.write("#### Feature importance Random Forest")
     st.image("Images/feature importance RandomForest.png")
   
-    st.title("Feature importance Decision Tree")
+    st.write("#### Feature importance Decision Tree")
     st.image("Images/feature importance DecisionTree.png")
 
-    st.title("Feature importance XGB")
+    st.write("#### Feature importance XGB")
     st.image("Images/feature importance XGB.png")
 
-    # Afficher les images et les explications
-    st.title("Shape de Random Forest Regressor")
+# Troisième onglet : Prédictions et Analyse
+with tab3:
+    st.write("### Prédictions et Analyse")
+    
+    # Ajout des visualisations et analyse
+    st.write("#### Shape de Random Forest Regressor")
     st.image("Images/Shape Random Forest Regressor.png")
     st.write("On remarque que les variables ayant le plus d'impact dans le modèle Random Forest Regressor sont : population, bioen, therm, Température (C°)")
-    
-    st.title("Shape de Decision Tree Regressor")
+
+    st.write("#### Shape de Decision Tree Regressor")
     st.image("Images/Shape Decision Tree Regressor.png")
     st.write("On remarque que les variables ayant le plus d'impact dans le modèle Decision Tree Regressor sont : population, therm, ech_phy")
 
-    st.title("Shape de XGB Regressor")
+    st.write("#### Shape de XGB Regressor")
     st.image("Images/Shape XGB Regressor.png")
     st.write("On remarque que les variables ayant le plus d'impact dans le modèle XGB Regressor sont : population, bioen, therm, Température (C°)")
-    
+
+    st.write("### Prédictions par région")
     st.image("Images/predic vs reel IDF.png")
     st.write("Île-de-France (IDF) - région avec une forte densité de population et une demande énergétique importante.")
     st.image("Images/predic vs reel PAC.png")
     st.write("Provence-Alpes-Côte d'Azur (PACA) - région plus ensoleillée et avec des variations de consommation différentes.")
     st.image("Images/predic vs reel NAQ.png")
     st.write("Nouvelle-Aquitaine (NAQ) - une région avec une répartition plus rurale et des besoins énergétiques différents.")
-
-    st.write("On remarque que les modèles suivent bien les tendances du réel. Tous sous-estiment les valeurs en semaine et surestiment les valeurs du week-end")
-
-    model_path = "Modèles et résultats JOBLIB/Random_Forest_Regressor_model.pkl"
-    model = joblib.load(model_path)
-    st.session_state.new_data = pd.DataFrame()
-    # Conversion de la colonne 'date_heure' en datetime sans format spécifié
-    dfsmp['date_heure'] = pd.to_datetime(dfsmp['date_heure'], errors='coerce')
     
-    # Obtenez les régions uniques
+    st.write("On remarque que les modèles suivent bien les tendances du réel. Tous sous-estiment les valeurs en semaine et surestiment les valeurs du week-end.")
+    
+    # Sélection de la région et prédiction
     regions = dfsmp['region'].unique()
-
-    # Sélection de la région
     selected_region = st.selectbox("Choisis une région", regions)
-    date_input = st.date_input("Date", min_value=datetime(2023, 1, 1), max_value=datetime(2100, 12, 31))
-    month = date_input.month  # Définir le mois après la sélection de la date
-     # Liste des tranches d'heures (chaque tranche de 3 heures)
-    time_slots = ["00:00", "03:00", "06:00", "09:00", "12:00", "15:00", "18:00", "21:00"]
-      # Sélection d'une heure avec des tranches de 3 heures
-    selected_time = st.selectbox("Choisis une heure (tranches de 3h)", time_slots)
-    # Convertir l'heure sélectionnée en nombre d'heures
-    hour = int(selected_time.split(":")[0])
     population = st.number_input("Population", min_value=0)
-    year=date_input.year
-    day=date_input.day
     
-    # Filtrage des données
-    filtered_data = dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]
-    
-    new_data = pd.DataFrame({
-    'therm': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['therm'].mean(),
-    'nucl': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['nucl'].mean(),
-    'eol': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['eol'].mean(),
-    'sol': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['sol'].mean(),
-    'hydr': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['hydr'].mean(),
-    'pomp': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['pomp'].mean(),
-    'bioen': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['bioen'].mean(),
-    'ech_phy': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['ech_phy'].mean(),
-    'stock_bat': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['stock_bat'].mean(),
-    'destock_bat': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['destock_bat'].mean(),
-    'eol_terr': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['eol_terr'].mean(),
-    'eol_off': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['eol_off'].mean(),
-    'pression_niv_mer (Pa)': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['pression_niv_mer (Pa)'].mean(),
-    'vitesse du vent moyen 10 mn (m/s)': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['vitesse du vent moyen 10 mn (m/s)'].mean(),
-    'temperature (C°)': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['temperature (C°)'].mean(),
-    'humidite (%)': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['humidite (%)'].mean(),
-    'pression station (Pa)': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['pression station (Pa)'].mean(),
-    'precipitations dans les 3 dernieres heures (mm)': dfsmp[(dfsmp['region'] == selected_region) & (dfsmp['date_heure'].dt.month == month) & (dfsmp['date_heure'].dt.hour == hour)]['precipitations dans les 3 dernieres heures (mm)'].mean(),
-    'année': [year],  # Remplace bien par 'année' comme attendu par le modèle
-    'population': [population],
-    'region_FR-ARA': [1 if selected_region == 'FR-ARA' else 0],
-    'region_FR-BFC': [1 if selected_region == 'FR-BFC' else 0],
-    'region_FR-BRE': [1 if selected_region == 'FR-BRE' else 0],
-    'region_FR-CVL': [1 if selected_region == 'FR-CVL' else 0],
-    'region_FR-GES': [1 if selected_region == 'FR-GES' else 0],
-    'region_FR-HDF': [1 if selected_region == 'FR-HDF' else 0],
-    'region_FR-IDF': [1 if selected_region == 'FR-IDF' else 0],
-    'region_FR-NAQ': [1 if selected_region == 'FR-NAQ' else 0],
-    'region_FR-NOR': [1 if selected_region == 'FR-NOR' else 0],
-    'region_FR-OCC': [1 if selected_region == 'FR-OCC' else 0],
-    'region_FR-PAC': [1 if selected_region == 'FR-PAC' else 0],
-    'region_FR-PDL': [1 if selected_region == 'FR-PDL' else 0],
-    'cos_heure': [np.cos(2 * np.pi * hour / 24)],
-    'sin_heure': [np.sin(2 * np.pi * hour / 24)],
-    'jour_sin': [np.sin(2 * np.pi * day / 365)],
-    'jour_cos': [np.cos(2 * np.pi * day / 365)],
-    'jour_semaine_sin': [np.sin(2 * np.pi * (date_input.weekday() + 1) / 7)],
-    'jour_semaine_cos': [np.cos(2 * np.pi * (date_input.weekday() + 1) / 7)],
-    'mois_sin': [np.sin(2 * np.pi * month / 12)],
-    'mois_cos': [np.cos(2 * np.pi * month / 12)]
-})
-    
-        # Bouton pour ajouter ou écraser les données
+    # Prédiction et affichage des résultats
     if st.button("Prédire la consommation"):
         predicted_conso = model.predict(new_data)
-        # Affichage du résultat
         st.write(f"Consommation énergétique prédite: {predicted_conso[0]:.2f} MW")
-
-    # Affichage des données ajoutées
-    st.write("Données ajoutées:")
-    st.write(new_data)
