@@ -685,10 +685,6 @@ Dans ce projet, nous avons analysé et modélisé les consommations énergétiqu
 
 
 
-#### Exploration et Pré-processing des Données
-
-
-
 L'une des étapes cruciales de ce projet a été l'exploration rigoureuse de chacune des 31 variables. Un point particulièrement important a été la **sélection des variables les plus complètes** pour garantir la qualité du modèle. Certaines variables présentaient des taux de complétude aussi faibles que **20%**, ce qui aurait pu biaiser les résultats si elles avaient été conservées.
 
 - **Gestion des valeurs manquantes** : Malgré nos efforts pour compléter les données, notamment par des tentatives de contact avec **RTE**, certaines variables ne pouvaient pas être récupérées ou complétées. Nous avons donc été contraints de supprimer ces variables incomplètes afin de préserver l'intégrité des résultats.
@@ -697,7 +693,7 @@ L'une des étapes cruciales de ce projet a été l'exploration rigoureuse de cha
 
 
 
-#### Modélisation et Résultats
+
 
 
 
@@ -705,7 +701,7 @@ Nous avons ensuite utilisé des techniques de **machine learning supervisé**, n
 
 
 
-#### Limitations et Optimisations Futures
+
 
 
 
@@ -714,7 +710,7 @@ Il est important de noter que le modèle **Random Forest**, bien que performant,
 Cependant, dans un environnement plus adapté, tel qu’une infrastructure serveur ou sur le cloud, le modèle et le **Grid Search** pourraient être exploités à leur **plein potentiel**, avec davantage d'arbres ou une plus grande profondeur pour le **Random Forest**, et une recherche plus exhaustive d’hyperparamètres pour le **Grid Search**. Ces optimisations pourraient non seulement améliorer la précision des prédictions, mais aussi accélérer le traitement des données et maximiser l'efficacité du modèle.
 
 
-#### Perspectives d'Amélioration
+
 
 
 
@@ -725,7 +721,7 @@ Pour améliorer la précision des prédictions, plusieurs axes pourraient être 
 
 
 
-#### Pistes d'études futures
+
 
 
 
