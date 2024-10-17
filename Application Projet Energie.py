@@ -13,7 +13,7 @@ st.sidebar.title("Sommaire")
 pages = ["Introduction et problématique", "Exploration des données", "Analyse des données", "Modélisation et Prédictions","Conclusion et Perspectives"]
 page = st.sidebar.radio("Aller vers la page", pages)
 pd.set_option('display.max_columns', None)
-dfsmp = pd.read_csv(r'C:\Users\Mounia\Documents\Projet ENERGIE\dfsmp.csv', sep=',', header=0)
+dfsmp = pd.read_csv('dfsmp.csv', sep=',', header=0)
 
 if page == pages[0]:
     #st.write("### Contexte du projet")
@@ -29,7 +29,7 @@ if page == pages[0]:
     st.write("- L’analyse par filière de production : énergie nucléaire / renouvelable")
     st.write("- Un focus sur les énergies renouvelables et leurs lieux d’implantation.")
     st.write("- Pour y parvenir, nous allons utiliser un ensemble de données d’approximativement 2 millions d’enregistrements. Les données contiennent les informations sur la consommation d’électricité et sa production à partir de plusieurs de plusieurs sources d’énergie : nucléaire, solaire, éolienne, bioénergie, fioul, …  par région métropolitaine (hors corse) enregistrées par demi-heure.")
-    st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\Image énergies.jpg")
+    st.image("Images/Image énergies.jpg")
 
 elif page == pages[1]:
     #st.write("Notre DataFrame sur les consommations d'énergie par région et par tranche de 3 h")
@@ -44,7 +44,7 @@ Nous y examinons les principales caractéristiques des données, telles que les 
     st.write("Notre DataFrame sur les consommations d'énergie par région et par tranche de 3 h")
     st.write("")
     pd.set_option('display.max_columns', None)
-    dfsmp = pd.read_csv(r'C:\Users\Mounia\Documents\Projet ENERGIE\dfsmp.csv', sep=',', header=0)
+    dfsmp = pd.read_csv('dfsmp.csv', sep=',', header=0)
     dfsmp.columns = [col.replace(" ", "\n") for col in dfsmp.columns]
     st.dataframe(dfsmp.head(10), height=300)
 
@@ -417,8 +417,8 @@ elif page == pages[3]:
     
     # Afficher les résultats des modèles
     pd.set_option('display.max_columns', None)
-    #result_models = pd.read_csv(r'C:\Users\Mounia\Documents\Projet ENERGIE\result_models.csv', sep=';', header=0)
-    results_algo = joblib.load('C:/Users/Mounia/Documents/PROJET ENERGIE/Modèles et résultats JOBLIB/results_df_algo.joblib')
+    #result_models = pd.read_csv('result_models.csv', sep=';', header=0)
+    results_algo = joblib.load('Modèles et résultats JOBLIB/results_df_algo.joblib')
 
     st.write("---")
     #st.markdown("#### Analyse Comparée des Modèles de Machine Learning")
@@ -440,10 +440,10 @@ elif page == pages[3]:
     st.write('##### Optimisation des Modèles avec la méthode Grid Search')
     st.write("")
  
-    results_grid = joblib.load('C:/Users/Mounia/Documents/Projet ENERGIE/Modèles et résultats JOBLIB/results_df_grid.joblib')
+    results_grid = joblib.load('Modèles et résultats JOBLIB/results_df_grid.joblib')
     st.write(results_grid)
 
-    #st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\post-gridsearch.png")
+    #st.image("Images\post-gridsearch.png")
     st.write("")
     st.write("""
     Après les premiers résultats, nous avons conservé uniquement les modèles non linéaires et appliqué la méthode d’optimisation **Grid Search** pour ajuster les hyperparamètres. Cette optimisation permet de réduire les risques de surapprentissage (overfitting) et d'améliorer les performances.
@@ -456,7 +456,7 @@ elif page == pages[3]:
     """)
 
     # Charger les résultats sauvegardés
-    results_path = r'C:\Users\Mounia\Documents\Projet ENERGIE\Modèles et résultats JOBLIB\LRresults.pkl'
+    results_path = 'Modèles et résultats JOBLIB/LRresults.pkl'
     results = joblib.load(results_path)
 
 
@@ -466,7 +466,7 @@ elif page == pages[3]:
     st.write("")
     st.write("""Nous avons sélectionné Random Forest comme modèle final en raison de ses performances supérieures. Maintenant, explorons plus en détail les variables les plus influentes sur la prédiction, en utilisant la méthode de **Feature Importance**.
     """)
-    st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\feature importance RandomForest.png")
+    st.image("Images/feature importance RandomForest.png")
     # Explication et analyse détaillée
     st.write("""
 
@@ -490,10 +490,10 @@ elif page == pages[3]:
 """)
     
     #st.title("Feature importance Decision Tree")
-    #st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\feature importance DecisionTree.png")
+    #st.image("Images/feature importance DecisionTree.png")
 
     #st.title("Feature importance XGB")
-    #st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\feature importance XGB.png")
+    #st.image("/Images/feature importance XGB.png")
 
     # Afficher les images et les explications
     st.write("---")
@@ -502,7 +502,7 @@ elif page == pages[3]:
     st.write("""
     Les **SHAP values** (SHapley Additive exPlanations) sont une méthode puissante permettant non seulement d’identifier quelles variables sont les plus importantes dans un modèle, mais aussi de comprendre comment chaque variable influence individuellement les prédictions. Le graphique SHAP présenté nous montre l'impact de chaque variable sur la prédiction finale du modèle à travers une représentation colorée (les points rouges indiquant des valeurs élevées et les bleus des valeurs basses).""")
     
-    st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\Shape Random Forest Regressor.png")
+    st.image("Images/Shape Random Forest Regressor.png")
     st.write("""
     À travers le graphique ci-dessus, nous pouvons observer plus en détail comment chaque variable influence les prédictions du modèle.
 
@@ -519,11 +519,11 @@ elif page == pages[3]:
     """)
     
     #st.title("Shape de Decision Tree Regressor")
-    #st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\Shape Decision Tree Regressor.png")
+    #st.image("Images/Shape Decision Tree Regressor.png")
     #st.write("On remarque que les variables ayant le plus d'impact dans le modèle Decision Tree Regressor sont : population, therm, ech_phy")
 
     #st.title("Shape de XGB Regressor")
-    #st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\Shape XGB Regressor.png")
+    #st.image("Images/Shape XGB Regressor.png")
     #st.write("On remarque que les variables ayant le plus d'impact dans le modèle XGB Regressor sont : population, bioen, therm, Température (C°)")
     st.write("---")
     st.write("##### Performance du Modèle : Prédictions vs Réalités")
@@ -535,7 +535,7 @@ elif page == pages[3]:
     Le premier graphique représente l’Île-de-France, une région fortement urbanisée avec une population dense et une demande énergétique importante. Cette forte demande s’explique par la présence d’infrastructures majeures, d'une industrie développée, ainsi que par la consommation des ménages.
     """)
     st.write("")
-    st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\predic vs reel IDF.png")
+    st.image("Images/predic vs reel IDF.png")
     st.write("""
 
     **Analyse** :
@@ -552,7 +552,7 @@ elif page == pages[3]:
 Le deuxième graphique représente la région Provence-Alpes-Côte d'Azur (PACA), une région caractérisée par un climat méditerranéen et une consommation énergétique influencée par des besoins spécifiques tels que la climatisation durant l'été.
 """)    
 
-    st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\predic vs reel PAC.png")
+    st.image("Images/predic vs reel PAC.png")
     st.write("""
 **Analyse ** :
 - La **consommation réelle moyenne** (ligne bleue) présente un pic marqué en milieu de semaine, avec une baisse continue à partir du jeudi jusqu'au week-end. Cela peut refléter la réduction des activités économiques en fin de semaine, typique des régions à forte composante touristique et résidentielle.
@@ -565,7 +565,7 @@ Le deuxième graphique représente la région Provence-Alpes-Côte d'Azur (PACA)
     st.write("""
 Le troisième graphique représente la région Nouvelle-Aquitaine, une région plus étendue avec une densité de population moindre, mais avec des industries spécifiques et des variations climatiques importantes.
 """)
-    st.image(r"C:\Users\Mounia\Documents\Projet ENERGIE\Images\predic vs reel NAQ.png")
+    st.image("Images/predic vs reel NAQ.png")
     st.write("""
 **Analyse** :
 - La **consommation réelle moyenne** (ligne bleue) montre une tendance similaire aux autres régions, avec un pic en milieu de semaine et une baisse progressive jusqu'au week-end. 
@@ -596,7 +596,7 @@ Bien que les dynamiques globales soient correctement appréhendées, affiner ces
     ainsi un outil interactif pour anticiper les besoins en énergie et optimiser la gestion des ressources.
     """)
     st.write("")
-    model_path = r"C:\Users\Mounia\Documents\Projet ENERGIE\Modèles et résultats JOBLIB\Random_Forest_Regressor_model.pkl"
+    model_path = "Modèles et résultats JOBLIB/Random_Forest_Regressor_model.pkl"
     model = joblib.load(model_path)
     st.session_state.new_data = pd.DataFrame()
     # Conversion de la colonne 'date_heure' en datetime sans format spécifié
