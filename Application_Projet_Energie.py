@@ -16,7 +16,7 @@ st.sidebar.markdown("---")
 
 # Section pour les auteurs avec un format plus lisible
 st.sidebar.subheader("Réalisé par :")
-st.sidebar.write("- **Mounya Kazi Aoual**")
+st.sidebar.write("- Mounya Kazi Aoual")
 st.sidebar.write("- Thierry Allem")
 st.sidebar.write("- Tony Moscatelli")
 
