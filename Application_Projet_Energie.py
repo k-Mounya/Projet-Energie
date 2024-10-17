@@ -419,12 +419,30 @@ elif page == pages[3]:
     pd.set_option('display.max_columns', None)
     #result_models = pd.read_csv('result_models.csv', sep=';', header=0)
     results_algo = joblib.load('Modèles et résultats JOBLIB/results_df_algo.joblib')
+    
+    # Fonction pour formater les grands nombres
+    def format_large_integers(val):
+        if isinstance(val, (int, float)) and val > 1_000_000_000_000:
+            return f'{val / 1_000_000_000_000:.2f}T'  # Trillions
+        elif isinstance(val, (int, float)) and val > 1_000_000_000:
+            return f'{val / 1_000_000_000:.2f}B'  # Billions
+        elif isinstance(val, (int, float)) and val > 1_000_000:
+            return f'{val / 1_000_000:.2f}M'  # Millions
+        else:
+            return val
 
+    # Appliquer le formatage sur le DataFrame
+    results_algo_formatted = results_algo.applymap(format_large_integers)
+
+    
+
+    
     st.write("---")
     #st.markdown("#### Analyse Comparée des Modèles de Machine Learning")
     st.write('##### Analyse Comparée des Modèles de Machine Learning')
     st.write("")
-    st.write(results_algo)
+    st.write(results_algo_formatted)
+    #st.write(results_algo)
     st.write("")
     st.write("""
     Pour l’entraînement, nous avons choisi 7 algorithmes couvrant une variété technique allant de la régression linéaire à la régression non linéaire, et du simple au complexe.
@@ -693,15 +711,7 @@ L'une des étapes cruciales de ce projet a été l'exploration rigoureuse de cha
 
 
 
-
-
-
-
 Nous avons ensuite utilisé des techniques de **machine learning supervisé**, notamment le modèle **Random Forest**, pour prédire la consommation énergétique future. Nos résultats sont globalement satisfaisants, le modèle capturant correctement les tendances générales de consommation par région, jours de la semaine, et horaires. Cependant, pour affiner encore davantage les prédictions, il serait nécessaire d'enrichir le modèle avec des variables supplémentaires.
-
-
-
-
 
 
 
@@ -711,18 +721,10 @@ Cependant, dans un environnement plus adapté, tel qu’une infrastructure serve
 
 
 
-
-
-
 Pour améliorer la précision des prédictions, plusieurs axes pourraient être explorés :
 - **Ajout de données socio-économiques** : Telles que le taux d'urbanisation, les habitudes de consommation, et les réglementations thermiques, qui influencent directement la demande énergétique.
 - **Optimisation des hyperparamètres** : Ajuster davantage les paramètres des modèles, par exemple en modifiant la profondeur des arbres dans les modèles de forêt aléatoire, ou en augmentant le nombre d'itérations dans les algorithmes d’apprentissage.
 - **Analyse non supervisée** : L’utilisation de techniques de clustering pourrait identifier des groupes de régions avec des profils de consommation similaires, ou des anomalies dans les comportements énergétiques régionaux.
-
-
-
-
-
 
 
 Le projet a ouvert la voie à plusieurs études potentielles qui pourraient enrichir notre compréhension des dynamiques énergétiques en France. Parmi ces pistes, nous proposons :
