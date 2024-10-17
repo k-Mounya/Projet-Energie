@@ -699,7 +699,7 @@ elif page == pages[4]:
     st.write("---")
 
     st.markdown("""
-Dans ce projet, nous avons analysé et modélisé les consommations énergétiques des différentes régions de la France métropolitaine entre 2013 et 2022, à partir des données fournies par **la RTE**. Le volume des données traité était conséquent, avec près de **2 millions d'enregistrements** et **31 variables**, ce qui a nécessité une **exploration minutieuse** et des **méthodes avancées de nettoyage et d'analyse** pour garantir des résultats fiables.
+Dans ce projet, nous avons analysé et modélisé les consommations énergétiques des différentes régions de la France métropolitaine entre 2013 et 2022, à partir des données fournies par le gestionnaire du réseau de transport d’électricité français** RTE**. Le volume des données traité était conséquent, avec près de **2 millions d'enregistrements** et **31 variables**, ce qui a nécessité une **exploration minutieuse** et des **méthodes avancées de nettoyage et d'analyse** pour garantir des résultats fiables.
 
 
 
