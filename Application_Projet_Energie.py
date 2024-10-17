@@ -9,10 +9,31 @@ from datetime import datetime
 import xgboost
 import joblib
 
-st.sidebar.title("Sommaire")
-pages = ["Introduction et problématique", "Exploration des données", "Analyse des données", "Modélisation et Prédictions","Conclusion et Perspectives"]
-page = st.sidebar.radio("Aller vers la page", pages)
+st.sidebar.title("Projet Analyse Énergétique")
+
+# Ajout d'un séparateur
+st.sidebar.markdown("---")
+
+# Section pour les auteurs avec un format plus lisible
+st.sidebar.subheader("Réalisé par :")
+st.sidebar.write("- **Mounya Kazi Aoual**")
+st.sidebar.write("- Thierry Allem")
+st.sidebar.write("- Tony Moscatelli")
+
+# Ajout d'un autre séparateur
+st.sidebar.markdown("---")
+
+# Titre du sommaire
+st.sidebar.subheader("Sommaire")
+
+# Liste des pages dans le sommaire
+pages = ["Introduction et problématique", "Exploration des données", "Analyse des données", 
+         "Modélisation et Prédictions", "Conclusion et Perspectives"]
+
+page = st.sidebar.radio("Aller vers", pages)
+
 pd.set_option('display.max_columns', None)
+
 dfsmp = pd.read_csv('dfsmp.csv', sep=',', header=0)
 
 if page == pages[0]:
